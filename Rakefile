@@ -2,7 +2,7 @@ require 'rake'
 require 'rspec/core/rake_task'
 require_relative 'db/config'
 require_relative 'lib/students_importer'
-
+require_relative 'app/models/teacher'
 
 desc "create the database"
 task "db:create" do
@@ -32,6 +32,21 @@ desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
+
+
+desc "add 9 teachers"
+task "db:seed_teacher" do
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john1@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john2@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john3@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john4@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john5@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john6@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john7@example.com' })
+  Teacher.create({ first_name: 'John', last_name: 'Wong', email: 'john8@example.com' })
+end
+
 
 desc "Run the specs"
 RSpec::Core::RakeTask.new(:specs)
