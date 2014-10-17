@@ -3,7 +3,8 @@ require_relative '../../db/config'
 class Student < ActiveRecord::Base
 # implement your Student model here
 
-  belongs_to :teacher
+  has_many :classes
+  has_many :teachers, through: :classes
 
   validates :email, uniqueness: true
   validate :email_validate
@@ -32,3 +33,8 @@ end
     age = now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
   end
 end
+
+# rizal = Student.find(12)
+# rizal.classes
+# rizal.teachers
+
